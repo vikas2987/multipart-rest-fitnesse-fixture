@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="Fit">
+    <property environment="env"/>
+    
+    <property name="target" value="1.7"/>
+    <property name="eclipse_src" value="D:\workspace2\Test" />
+    
+    <property name="source" value="1.7"/>
+    <path id="Fit.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="./lib/fitnesse/commons-httpclient-3.1.jar"/>
+        <pathelement location="./lib/fitnesse/fitnesse-20111025.jar"/>
+        <pathelement location="./lib/fitnesse/jettison-1.3.2.jar"/>
+        <pathelement location="./lib/fitnesse/rhino-1.7R3.jar"/>
+        <pathelement location="./lib/fitnesse/slf4j-api-1.6.6.jar"/>
+        <pathelement location="./lib/fitnesse/smartrics-RestClient-2.1.jar"/>
+        <pathelement location="./lib/fitnesse/smartrics-RestFixture-3.0.jar"/>
+        <pathelement location="./lib/fitnesse/stax-api-1.0.1.jar"/>
+        <pathelement location="./lib/fitnesse/xmlpull-1.1.3.1.jar"/>
+        <pathelement location="./lib/fitnesse/xpp3_min-1.1.4c.jar"/>
+        <pathelement location="./lib/fitnesse/xstream-1.4.2.jar"/>
+        <pathelement location="./lib/httpcomponent/commons-codec-1.6.jar"/>
+        <pathelement location="./lib/httpcomponent/commons-logging-1.1.3.jar"/>
+        <pathelement location="./lib/httpcomponent/httpclient-4.3.2.jar"/>
+        <pathelement location="./lib/httpcomponent/httpclient-cache-4.3.2.jar"/>
+        <pathelement location="./lib/httpcomponent/httpcore-4.3.1.jar"/>
+        <pathelement location="./lib/httpcomponent/httpmime-4.3.2.jar"/>
+        
+        <pathelement location="./lib/log4j-1.2.16.jar"/>
+        
+        <pathelement location="./lib/slf4j-log4j12-1.7.5.jar"/>
+    </path>
+   
+   <target name="copy-eclipse-src">
+            <delete dir="src"/>
+            <mkdir dir="src"/>
+            <copy includeemptydirs="false" todir="src">
+                <fileset dir="${eclipse_src}\src">
+		     <include name="**/*.java"/>
+                </fileset>
+            </copy>
+    </target>
+    
+  
+    <target depends="cleanall" name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+	        <exclude name="**/*.launch"/>
+	        <exclude name="**/*.java"/>
+                </fileset>
+        </copy>
+    </target>
+    
+    <target depends="copy-eclipse-src" name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    
+    <target depends="init" name="build-project">
+      
+        <javac includeantruntime="false" debug="true" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="Fit.classpath"/>
+        </javac>
+    </target>
+    
+    <target depends="build" name="jar">
+     <jar destfile="./egain.fitnesse.multipart-0.0.1.jar" basedir="./bin"/>
+     </target> 
+    
+    
+</project>
