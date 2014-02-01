@@ -74,7 +74,7 @@
     </target>
     
     <target depends="build" name="jar">
-     <jar destfile="./egain.fitnesse.multipart-0.0.1.jar" basedir="./bin"/>
+     <jar destfile="./goraksh.fitnesse.multipart-0.0.1.jar" basedir="./bin"/>
      </target> 
     
     
